@@ -3,7 +3,7 @@
     "main": "server.js",
     "scripts": {
         "build": "babel src -d dist",
-        "start": "npm run build && node dist/server.js"
+        "start": "node dist/server.js"
     },
     "dependencies": {
         "babel-core": "^6.26.0",
