@@ -1,10 +1,5 @@
-'use strict';
 
-var _pot = require('./shared/pot.service');
-
-var potService = _interopRequireWildcard(_pot);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+import * as potService from './shared/pot.service';
 
 // BASE SETUP
 // =============================================================================
@@ -18,8 +13,8 @@ var fs = require('fs');
 var icons = [];
 
 // Read images (icons) directory contents and push into icons array, ready for front-end when it requests the data
-fs.readdir('./assets', function (err, files) {
-  files.forEach(function (file) {
+fs.readdir('./assets', (err, files) => {
+  files.forEach(file => {
     if (file.indexOf('.png') !== -1) {
       icons.push(file);
     }

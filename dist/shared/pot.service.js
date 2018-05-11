@@ -1,23 +1,12 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getPots = getPots;
-exports.createPot = createPot;
-exports.deletePot = deletePot;
-exports.deposit = deposit;
-exports.withdraw = withdraw;
-exports.updateSettings = updateSettings;
-exports.updateProgress = updateProgress;
-exports.updateProgressBarColor = updateProgressBarColor;
 
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
+// var uri = 'mongodb://admin:f0xtr0t4l@ds121730.mlab.com:21730/heroku_mwc4jn3s '; 
+var uri = 'mongodb://heroku_mwc4jn3s:a62rsg7sfai23eil3vkasfssir@ds121730.mlab.com:21730/heroku_mwc4jn3s';
 
 // MongoDB
 mongoose.Promise = global.Promise;
-var promise = mongoose.connect('mongodb://localhost/pots');
+var promise = mongoose.connect(uri);
 
 promise.then(function (db) {
   console.log('MONGO CONNECTED');
@@ -45,7 +34,7 @@ var potSchema = mongoose.Schema({
 // Compile schema into a model
 var Pot = mongoose.model('Pot', potSchema);
 
-function getPots(callback) {
+export function getPots(callback) {
   Pot.find({}, function (err, result) {
     if (err) {
       console.log(err);
@@ -55,7 +44,7 @@ function getPots(callback) {
   });
 }
 
-function createPot(potDetails, callback) {
+export function createPot(potDetails, callback) {
   var newPot = new Pot(potDetails);
   newPot.save(function (err, result) {
     if (err) {
@@ -66,7 +55,7 @@ function createPot(potDetails, callback) {
   });
 }
 
-function deletePot(potDetails, callback) {
+export function deletePot(potDetails, callback) {
   Pot.deleteOne({ _id: ObjectId(potDetails._id) }, function (err, result) {
     if (err) {
       console.log(err);
@@ -76,7 +65,7 @@ function deletePot(potDetails, callback) {
   });
 }
 
-function deposit(body, callback) {
+export function deposit(body, callback) {
   var depositAmount = parseFloat(body.depositAmount);
   Pot.update({ _id: ObjectId(body.potDetails._id) }, { $inc: { balance: depositAmount } }, function (err, result) {
     if (err) {
@@ -87,7 +76,7 @@ function deposit(body, callback) {
   });
 }
 
-function withdraw(body, callback) {
+export function withdraw(body, callback) {
   var withdrawalAmount = -parseFloat(body.withdrawalAmount);
   Pot.update({ _id: ObjectId(body.potDetails._id) }, { $inc: { balance: withdrawalAmount } }, function (err, result) {
     if (err) {
@@ -98,7 +87,7 @@ function withdraw(body, callback) {
   });
 }
 
-function updateSettings(potDetails, callback) {
+export function updateSettings(potDetails, callback) {
   Pot.update({ _id: ObjectId(potDetails._id) }, {
     name: potDetails.name,
     accountName: potDetails.accountName,
@@ -122,7 +111,7 @@ function updateSettings(potDetails, callback) {
   });
 }
 
-function updateProgress(potDetails, callback) {
+export function updateProgress(potDetails, callback) {
   Pot.update({ _id: ObjectId(potDetails._id) }, { progress: potDetails.progress }, function (err, result) {
     if (err) {
       console.log(err);
@@ -132,7 +121,7 @@ function updateProgress(potDetails, callback) {
   });
 }
 
-function updateProgressBarColor(potDetails, callback) {
+export function updateProgressBarColor(potDetails, callback) {
   Pot.update({ _id: ObjectId(potDetails._id) }, { progressBarColor: potDetails.progressBarColor }, function (err, result) {
     if (err) {
       console.log(err);
