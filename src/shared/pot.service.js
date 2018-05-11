@@ -1,7 +1,8 @@
 
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
-var uri = 'mongodb://admin:f0xtr0t4l@ds121730.mlab.com:21730/heroku_mwc4jn3s '; 
+// var uri = 'mongodb://admin:f0xtr0t4l@ds121730.mlab.com:21730/heroku_mwc4jn3s '; 
+var uri = 'mongodb://heroku_mwc4jn3s:a62rsg7sfai23eil3vkasfssir@ds121730.mlab.com:21730/heroku_mwc4jn3s';
 
 // MongoDB
 mongoose.Promise = global.Promise;
