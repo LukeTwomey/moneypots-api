@@ -1,10 +1,11 @@
 
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
+var uri = 'mongodb://admin:f0xtr0t4l;@ds031952.mlab.com:31952/heroku_s8c3mtx0';  
 
 // MongoDB
 mongoose.Promise = global.Promise;
-var promise = mongoose.connect('mongodb://localhost/pots');
+var promise = mongoose.connect(uri);
 
 promise.then(function(db) {
   console.log('MONGO CONNECTED');
