@@ -1,5 +1,5 @@
 
-import * as potSerrrrvice from './shared/pot.service';
+import * as potService from './shared/pot.service';
 
 // BASE SETUP
 // =============================================================================
