@@ -1,2 +1,2 @@
 
-export let uri = ENV['MONGODB_URI'];
+export let uri = process.env.MONGODB_URI;
