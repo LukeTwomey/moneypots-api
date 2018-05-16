@@ -12,14 +12,16 @@ exports.updateSettings = updateSettings;
 exports.updateProgress = updateProgress;
 exports.updateProgressBarColor = updateProgressBarColor;
 
+// import * as config from '../config';
+var uri = 'mongodb://heroku_mwc4jn3s:a62rsg7sfai23eil3vkasfssir@ds121730.mlab.com:21730/heroku_mwc4jn3s';
+
 var mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
-// var uri = 'mongodb://admin:f0xtr0t4l@ds121730.mlab.com:21730/heroku_mwc4jn3s '; 
-var uri = 'mongodb://***REMOVED***.mlab.com:21960/***REMOVED***';
 
 // MongoDB
 mongoose.Promise = global.Promise;
 var promise = mongoose.connect(uri);
+// var promise = mongoose.connect(config.uri);
 
 promise.then(function (db) {
   console.log('MONGO CONNECTED');
